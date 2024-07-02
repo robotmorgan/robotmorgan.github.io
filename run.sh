@@ -74,7 +74,8 @@ function shutdown () {
 	cd $basedir
 	rm -rf robomorgan_comdb2
 	
-	needtopush=$(git diff --exit-code index.html)
+	git diff --exit-code index.html &> /dev/null
+	needtopush=$?
 	if (( needtopush == 1 ))
 	then
 		git add index.html log .latest_commit
